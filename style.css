@@ -2,13 +2,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
     1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 600px;
+    width: 600px;
+    border-style: solid;
 }
 
 .squares {
-    height: 10px;
-    width: 10px;
-    border-style: solid;
-    border-color: black;
+    height: 37.5px;
+    width: 37.5px;
     border-width: 5px;
 }
