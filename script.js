@@ -6,3 +6,9 @@ for (i = 0; i < 256; i++) {
     container.appendChild(div);
     div.classList.add('squares');
 }
+
+const squares = document.querySelectorAll('.squares');
+
+squares.forEach(function(item) {
+    item.addEventListener('mouseover', e => e.target.style.backgroundColor = colorSelector.value) 
+});
