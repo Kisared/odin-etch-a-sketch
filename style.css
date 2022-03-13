@@ -1,3 +1,9 @@
+body {
+    margin: 0;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: lightcyan;
+}
+
 .container {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
@@ -5,9 +11,46 @@
     height: 600px;
     width: 600px;
     border-style: solid;
+    background-color: white;
 }
 
 .squares {
     height: 37.5px;
     width: 37.5px;
+}
+
+.header {
+    background-color: #041931d0;
+    height: 50px;
+    width: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    color: white;
+    font-size: large;
+    font-weight: bold;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: lightcyan;
+    height:max-content;
+}
+
+.buttonAndContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 2;
+}
+
+.clearButton {
+    background-color: black;
+    color: white;
 }
