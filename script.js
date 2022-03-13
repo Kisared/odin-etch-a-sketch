@@ -42,12 +42,7 @@ clearButton.addEventListener('click', () => {
         for (let i = 0; i < newGridArea; i++) {
             let div = squares[i];
             div.classList.remove('squares');
-            div.style.height = `${600/newGridSide}px}`;
-            div.style.width = `${600/newGridSide}px}`;
             container.appendChild(div);
-            div.classList.add('newSquares');
         }
-        const newSquares = document.querySelectorAll('.newSquares');
-        newSquares.forEach((element) => container.appendChild(element));
     }
 });
