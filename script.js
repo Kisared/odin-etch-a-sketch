@@ -1,6 +1,7 @@
 const container = document.querySelector('.container');
 const colorSelector = document.querySelector('.colorSelector');
 const clearButton = document.querySelector('.clearButton');
+const html = document.querySelector('html');
 
 for (i = 0; i < 256; i++) {
     let div = document.createElement('div');
@@ -9,9 +10,29 @@ for (i = 0; i < 256; i++) {
 }
 
 const squares = Array.from(document.querySelectorAll('.squares'));
+let isDrawing = false;
+
+html.addEventListener('mouseup', () => isDrawing = false);
+html.addEventListener('mousedown', () => isDrawing = true);
 
 squares.forEach(function(item) {
-    item.addEventListener('mouseover', e => e.target.style.backgroundColor = colorSelector.value) 
+    item.addEventListener('mousedown', e => {
+        e.target.style.backgroundColor = colorSelector.value
+        isDrawing = true
+    }); 
+});
+
+squares.forEach(function(item) {
+    item.addEventListener('mouseup', e => {
+        e.target.style.backgroundColor = colorSelector.value
+        isDrawing = false
+    }); 
+});
+
+squares.forEach(function(item) {
+    item.addEventListener('mouseover', e => {
+        if (isDrawing) e.target.style.backgroundColor = colorSelector.value;
+    }); 
 });
 
 clearButton.addEventListener('click', () => {
@@ -31,7 +52,23 @@ clearButton.addEventListener('click', () => {
                 squares.push(div)
             }
             squares.forEach(function(item) {
-                item.addEventListener('mouseover', e => e.target.style.backgroundColor = colorSelector.value) 
+                item.addEventListener('mousedown', e => {
+                    e.target.style.backgroundColor = colorSelector.value
+                    isDrawing = true
+                }); 
+            });
+            
+            squares.forEach(function(item) {
+                item.addEventListener('mouseup', e => {
+                    e.target.style.backgroundColor = colorSelector.value
+                    isDrawing = false
+                }); 
+            });
+            
+            squares.forEach(function(item) {
+                item.addEventListener('mouseover', e => {
+                    if (isDrawing) e.target.style.backgroundColor = colorSelector.value;
+                }); 
             });
         }
         container.style.gridTemplateColumns = `repeat(${newGridSide}, 1fr)`;
@@ -42,6 +79,11 @@ clearButton.addEventListener('click', () => {
         for (let i = 0; i < newGridArea; i++) {
             let div = squares[i];
             div.classList.remove('squares');
+            div.style.userSelect = 'none';
+            div.style.mozUserSelect = 'none';
+            div.style.webkitUserDrag = 'none';
+            div.style.webkitUserSelect = 'none';
+            div.style.msUserSelect = 'none';
             container.appendChild(div);
         }
     }
