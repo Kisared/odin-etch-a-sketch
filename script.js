@@ -2,6 +2,7 @@ const container = document.querySelector('.container');
 const colorSelector = document.querySelector('.colorSelector');
 const clearButton = document.querySelector('.clearButton');
 const html = document.querySelector('html');
+const rainbowButton = document.querySelector('.rainbowButton');
 
 for (i = 0; i < 256; i++) {
     let div = document.createElement('div');
@@ -24,10 +25,7 @@ function addDrawFunctionality() {
     });
 
     squares.forEach(function(item) {
-        item.addEventListener('mouseup', e => {
-            e.target.style.backgroundColor = colorSelector.value
-            isDrawing = false
-        }); 
+        item.addEventListener('mouseup', e => isDrawing = false);
     });
 
     squares.forEach(function(item) {
@@ -75,3 +73,22 @@ clearButton.addEventListener('click', () => {
         }
     }
 });
+
+rainbowButton.addEventListener('click', () => {
+    
+    squares.forEach(function(item) {
+        item.addEventListener('mousedown', e => {
+            let randomColor = Math.floor(Math.random()*16777215).toString(16);
+            e.target.style.backgroundColor = '#' + randomColor;
+            isDrawing = true
+        }); 
+    });
+
+    squares.forEach(function(item) {
+        
+        item.addEventListener('mouseover', e => {
+            let randomColor = Math.floor(Math.random()*16777215).toString(16);
+            if (isDrawing) e.target.style.backgroundColor = '#' + randomColor;
+        }); 
+    });
+})
