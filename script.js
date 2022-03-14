@@ -15,25 +15,30 @@ let isDrawing = false;
 html.addEventListener('mouseup', () => isDrawing = false);
 html.addEventListener('mousedown', () => isDrawing = true);
 
-squares.forEach(function(item) {
-    item.addEventListener('mousedown', e => {
-        e.target.style.backgroundColor = colorSelector.value
-        isDrawing = true
-    }); 
-});
+function addDrawFunctionality() {
+    squares.forEach(function(item) {
+        item.addEventListener('mousedown', e => {
+            e.target.style.backgroundColor = colorSelector.value
+            isDrawing = true
+        }); 
+    });
 
-squares.forEach(function(item) {
-    item.addEventListener('mouseup', e => {
-        e.target.style.backgroundColor = colorSelector.value
-        isDrawing = false
-    }); 
-});
+    squares.forEach(function(item) {
+        item.addEventListener('mouseup', e => {
+            e.target.style.backgroundColor = colorSelector.value
+            isDrawing = false
+        }); 
+    });
 
-squares.forEach(function(item) {
-    item.addEventListener('mouseover', e => {
-        if (isDrawing) e.target.style.backgroundColor = colorSelector.value;
-    }); 
-});
+    squares.forEach(function(item) {
+        item.addEventListener('mouseover', e => {
+            if (isDrawing) e.target.style.backgroundColor = colorSelector.value;
+        }); 
+    });
+
+}
+
+addDrawFunctionality();
 
 clearButton.addEventListener('click', () => {
     const newGridSide = prompt("Introduce the number of squares per side for the new grid. WARNING: You can't try more than 100 squares per side.");
@@ -51,25 +56,7 @@ clearButton.addEventListener('click', () => {
                 div.classList.add('squares');
                 squares.push(div)
             }
-            squares.forEach(function(item) {
-                item.addEventListener('mousedown', e => {
-                    e.target.style.backgroundColor = colorSelector.value
-                    isDrawing = true
-                }); 
-            });
-            
-            squares.forEach(function(item) {
-                item.addEventListener('mouseup', e => {
-                    e.target.style.backgroundColor = colorSelector.value
-                    isDrawing = false
-                }); 
-            });
-            
-            squares.forEach(function(item) {
-                item.addEventListener('mouseover', e => {
-                    if (isDrawing) e.target.style.backgroundColor = colorSelector.value;
-                }); 
-            });
+            addDrawFunctionality();
         }
         container.style.gridTemplateColumns = `repeat(${newGridSide}, 1fr)`;
         container.style.gridTemplateRows = `repeat(${newGridSide}, 1fr)`;
