@@ -77,3 +77,8 @@ body {
     height: 50px;
     width: 50px;
 }
+
+.rainbowButton {
+    background-color: black;
+    color: white;
+}
