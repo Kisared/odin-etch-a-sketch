@@ -74,21 +74,35 @@ clearButton.addEventListener('click', () => {
     }
 });
 
-rainbowButton.addEventListener('click', () => {
-    
-    squares.forEach(function(item) {
-        item.addEventListener('mousedown', e => {
-            let randomColor = Math.floor(Math.random()*16777215).toString(16);
-            e.target.style.backgroundColor = '#' + randomColor;
-            isDrawing = true
-        }); 
-    });
+let rainbowIsActive = false;
+let rainbowAnimation;
 
-    squares.forEach(function(item) {
-        
-        item.addEventListener('mouseover', e => {
+rainbowButton.addEventListener('click', (e) => {
+    if (rainbowIsActive === false) {
+        rainbowIsActive = true;
+        squares.forEach(function(item) {
+            item.addEventListener('mousedown', e => {
+                let randomColor = Math.floor(Math.random()*16777215).toString(16);
+                e.target.style.backgroundColor = '#' + randomColor;
+                isDrawing = true;
+            }); 
+        });
+
+        squares.forEach(function(item) {
+            item.addEventListener('mouseover', e => {
+                let randomColor = Math.floor(Math.random()*16777215).toString(16);
+                if (isDrawing) e.target.style.backgroundColor = '#' + randomColor;
+            }); 
+        });
+        e.target.style.backgroundColor = 'black';
+        rainbowAnimation = setInterval(() => {
             let randomColor = Math.floor(Math.random()*16777215).toString(16);
-            if (isDrawing) e.target.style.backgroundColor = '#' + randomColor;
-        }); 
-    });
+            rainbowButton.style.backgroundColor = '#' + randomColor;
+        }, 100);
+    } else {
+        rainbowIsActive = false;
+        addDrawFunctionality();
+        clearInterval(rainbowAnimation);
+        rainbowButton.style.backgroundColor = 'black';
+    }
 })
